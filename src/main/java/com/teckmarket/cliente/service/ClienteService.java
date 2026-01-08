@@ -31,6 +31,10 @@ public class ClienteService {
         return repository.findAll();
     }
 
+    public List<Cliente> buscarPorNome(String parteDoNome) {
+        return repository.findByNomeContainingIgnoreCase(parteDoNome);
+    }
+
     public Optional<Cliente> buscarPorId(Long id) {
         return repository.findById(id);
     }

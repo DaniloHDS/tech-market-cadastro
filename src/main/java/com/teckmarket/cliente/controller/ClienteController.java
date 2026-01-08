@@ -41,6 +41,12 @@ public class ClienteController {
         return service.atualizarCliente(id, clienteDTO).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/buscar")
+    public ResponseEntity<List<Cliente>> buscarPorNome(@RequestParam String nome) {
+        List<Cliente> clientes = service.buscarPorNome(nome);
+        return ResponseEntity.ok(clientes);
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
         if (service.deletarCliente(id)) {
