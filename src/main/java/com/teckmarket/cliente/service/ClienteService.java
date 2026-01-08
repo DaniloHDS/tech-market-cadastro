@@ -56,6 +56,13 @@ public class ClienteService {
         }).orElse(false);
     }
 
+    public void deletar(Long id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Cliente não encontrado com o ID" + id);
+        }
+        repository.deleteById(id);
+    }
+
     private  void copiarDadosDtoParaEntidade(ClienteDTO dto, Cliente entidade) {
         entidade.setNome(dto.getNome());
         entidade.setEmail(dto.getEmail());
